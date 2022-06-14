@@ -5,7 +5,7 @@ import EditableSpan from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from '@material-ui/icons';
 
-type TasksPropsType = {
+export type TasksPropsType = {
     id: string
     title: string
     isDone: boolean
@@ -20,9 +20,9 @@ type PropsType = {
     addTasks: (title: string, todolistId: string) => void
     changeStatus: (id: string, isDone: boolean, todolistId: string) => void
     removeTodolist: (todolistId: string) => void
-    changeTodolistTitle:(id:string, newTitle: string)=> void
+    changeTodolistTitle: (id: string, newTitle: string) => void
     filter: string
-    changeTaskTitle:(id:string, newTitle:string, todolistId:string)=> void
+    changeTaskTitle: (id: string, newTitle: string, todolistId: string) => void
 }
 
 export const Todolist = (props: PropsType) => {
@@ -41,11 +41,11 @@ export const Todolist = (props: PropsType) => {
         props.removeTodolist(props.id)
     }
 
-    const addTask = (title:string) => {
+    const addTask = (title: string) => {
         props.addTasks(title, props.id)
     }
 
-    const changeTodolistTitle = (newTitle:string)=>{
+    const changeTodolistTitle = (newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle)
     }
 
@@ -69,14 +69,14 @@ export const Todolist = (props: PropsType) => {
                                 let newIsDoneValue = e.currentTarget.checked
                                 props.changeStatus(t.id, newIsDoneValue, props.id)
                             }
-                            const onChangeTitleHandler = (newValue:string) => {
+                            const onChangeTitleHandler = (newValue: string) => {
                                 props.changeTaskTitle(t.id, newValue, props.id)
                             }
 
                             return <li key={t.id}>
                                 <Checkbox color='primary' checked={t.isDone} onChange={onChangeHandler}
-                                       className={t.isDone == true ? 'is-done' : ''}/>
-                                        <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
+                                          className={t.isDone == true ? 'is-done' : ''}/>
+                                <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
                                 <IconButton onClick={onClickHandler}><Delete/></IconButton>
                             </li>
                         })
